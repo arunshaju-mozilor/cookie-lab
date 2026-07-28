@@ -1,12 +1,12 @@
 # CookieYes Test Site
 
-A minimal 3-page static site for CookieYes banner QA testing.
+A minimal static site for CookieYes banner QA testing, on a dark violet theme.
 
 ## Pages
 
 | Page | Purpose |
 |---|---|
-| `index.html` | Homepage with cookie category cards |
+| `index.html` | **Cookie Lab** home page — loads real third-party trackers and sets cookies in every category on load, with a live consent-status dashboard |
 | `about.html` | About page for multi-page navigation tests |
 | `privacy-policy.html` | Privacy policy (linked from banner) |
 
