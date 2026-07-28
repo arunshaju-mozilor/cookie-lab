@@ -1,6 +1,8 @@
-# CookieYes Test Site
+# Cookie Lab
 
 A minimal static site for CookieYes banner QA testing, on a dark violet theme.
+
+**Live:** https://arunshaju-mozilor.github.io/cookie-lab/
 
 ## Pages
 
@@ -22,11 +24,10 @@ In each HTML file, uncomment and replace the script tag in `<head>`:
 
 Get `YOUR_CLIENT_ID` from: CookieYes Dashboard → Settings → Installation.
 
-## Hosting on GitHub Pages
+## Hosting
 
-1. Push this folder to a GitHub repository
-2. Go to **Settings → Pages**
-3. Set source to **Deploy from a branch → main → / (root)**
-4. Your site will be live at `https://<username>.github.io/<repo-name>`
+GitHub Pages is already configured on this repo: **Deploy from a branch → `main` → `/` (root)**.
+Pushing to `main` redeploys the site within a minute or two.
 
-Use the live URL as the domain when adding a website in the CookieYes dashboard.
+Use https://arunshaju-mozilor.github.io/cookie-lab/ as the domain when adding a website
+in the CookieYes dashboard.
