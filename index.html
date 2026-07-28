@@ -363,13 +363,20 @@
     .trackers > p { color: var(--text-faint); font-size: 0.9rem; margin-bottom: 1.25rem; }
     .tracker-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      /* 300px min keeps this to two columns inside the 820px panel, so the
+         longer tracker names still fit on one line beside their badge. */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 0.75rem;
     }
+    /* Two columns, two rows: name + badge on the first row, host URL spanning
+       the full width below it. Grid (not flex) so the long unbreakable tracker
+       URLs can never push the badge outside the card. */
     .tracker {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
-      gap: 0.6rem;
+      column-gap: 0.6rem;
+      row-gap: 0.15rem;
       padding: 0.7rem 0.9rem;
       background: var(--surface);
       border: 1px solid var(--border-soft);
@@ -378,8 +385,14 @@
       font-weight: 600;
       color: var(--text);
     }
+    .tracker .name {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
     .tracker .run {
-      margin-left: auto;
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
       font-size: 0.72rem;
       font-weight: 700;
       padding: 0.15rem 0.55rem;
@@ -402,10 +415,12 @@
     }
     .tracker.blocked { border-color: rgba(251, 113, 133, 0.3); }
     .tracker .host {
-      display: block;
+      grid-column: 1 / -1;
+      grid-row: 2;
       font-weight: 400;
       font-size: 0.72rem;
       color: var(--text-faint);
+      overflow-wrap: anywhere;  /* long URLs wrap instead of overflowing */
     }
     .tracker small { display: block; font-weight: 400; color: var(--text-faint); }
     .tracker-summary {
@@ -506,27 +521,33 @@
       <!-- data-match: substrings tested against each resource entry's URL. -->
       <div class="tracker-grid" id="tracker-grid">
         <div class="tracker" data-match="googletagmanager.com/gtm.js">
-          <span>Google Tag Manager <span class="host">googletagmanager.com/gtm.js</span></span>
+          <span class="name">Google Tag Manager</span>
+          <span class="host">googletagmanager.com/gtm.js</span>
           <span class="run">checking…</span>
         </div>
         <div class="tracker" data-match="googletagmanager.com/gtag/js">
-          <span>Google Analytics 4 <span class="host">googletagmanager.com/gtag/js</span></span>
+          <span class="name">Google Analytics 4</span>
+          <span class="host">googletagmanager.com/gtag/js</span>
           <span class="run">checking…</span>
         </div>
         <div class="tracker" data-match="connect.facebook.net">
-          <span>Meta Pixel <span class="host">connect.facebook.net</span></span>
+          <span class="name">Meta Pixel</span>
+          <span class="host">connect.facebook.net</span>
           <span class="run">checking…</span>
         </div>
         <div class="tracker" data-match="static.hotjar.com|hotjar.io">
-          <span>Hotjar <span class="host">static.hotjar.com</span></span>
+          <span class="name">Hotjar</span>
+          <span class="host">static.hotjar.com</span>
           <span class="run">checking…</span>
         </div>
         <div class="tracker" data-match="clarity.ms">
-          <span>Microsoft Clarity <span class="host">clarity.ms</span></span>
+          <span class="name">Microsoft Clarity</span>
+          <span class="host">clarity.ms</span>
           <span class="run">checking…</span>
         </div>
         <div class="tracker" data-match="licdn.com">
-          <span>LinkedIn Insight <span class="host">snap.licdn.com</span></span>
+          <span class="name">LinkedIn Insight</span>
+          <span class="host">snap.licdn.com</span>
           <span class="run">checking…</span>
         </div>
       </div>
